@@ -23,7 +23,8 @@
         .font-bangla {
             font-family: "Hind Siliguri", sans-serif;
         }
-        .active{
+
+        .active {
             background-color: #422AD5;
             color: white;
         }
@@ -106,17 +107,35 @@
         </div>
     </section>
     <section class="text-center mt-[150px] mb-6">
-        <h1 class="text-[48px] font-bold leading-[48px] mb-8"><span class="text-[#00BCFF]">Let's</span>  Learn Vocabularies
+        <h1 class="text-[48px] font-bold leading-[48px] mb-8"><span class="text-[#00BCFF]">Let's</span> Learn
+            Vocabularies
         </h1>
-        <div id="button-container"  class="flex gap-4 flex-wrap justify-center">
-            
+        <div id="button-container" class="flex gap-4 flex-wrap justify-center">
+
         </div>
     </section>
     <section id="word-container" class="bg-gray-300 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-center p-4">
-    <div class="col-span-full text-center py-10 space-y-5">
-        <p class="text-[#79716B] font-medium text-[14px] font-bangla">আপনি এখনো কোন Lesson Select করেন ন</p>
-        <h2 class="text-[34px] font-medium leading-10">একটি Lesson Select করুন।</h2>
-    </div>
+        <div class="col-span-full text-center py-10 space-y-5">
+            <p class="text-[#79716B] font-medium text-[14px] font-bangla">আপনি এখনো কোন Lesson Select করেন ন</p>
+            <h2 class="text-[34px] font-medium leading-10">একটি Lesson Select করুন।</h2>
+        </div>
+    </section>
+    <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <div class="space-y-6" id="details-box">
+                 
+              </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
     </section>
     <script src="script.js"></script>
 </body>

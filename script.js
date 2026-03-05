@@ -4,6 +4,12 @@ const loadleson = () => {
         .then((data) => getLesson(data.data))
 }
 
+const createElements = (arr) => {
+    const newHtml = arr.map((el) => `<span class="btn">${el}</span>`)
+    return (newHtml.join(" "))
+}
+
+
 const lessonLoad = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
@@ -19,7 +25,36 @@ const lessonLoad = (id) => {
             showLesson(data.data)
         })
 }
+const loadWordDetail = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`
+    const res = await fetch(url)
+    const details = await res.json()
+    showDetails(details.data)
+}
 
+const showDetails = (word) => {
+    const detailBox = document.getElementById('details-box');
+    detailBox.innerHTML = `
+       <div>
+                        <h1 class="font-bold text-2xl">${word.word} <span><i class="fa-solid fa-microphone-lines"></i></span>: ${word.pronunciation}</h1>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-[24px]">Meaning</h1>
+                        <h1 class="text-[24px]">${word.meaning}</h1>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-[24px]">Example</h1>
+                        <h1 class="text-[24px]">${word.sentence}</h1>
+                    </div>
+                    <div>
+                        <h1>সমার্থক শব্দ গুলো</h1>
+                        <div>
+                            ${createElements(word.synonyms)}
+                        </div>
+                    </div>
+    `
+    document.getElementById('my_modal').showModal()
+}
 const showLesson = (words) => {
     const wordContainer = document.getElementById('word-container');
     wordContainer.innerHTML = ""
@@ -37,11 +72,11 @@ const showLesson = (words) => {
         const newDiv = document.createElement('div');
         newDiv.innerHTML = `
             <div class="card bg-white py-[50px] h-[100%]">
-            <h1 class="font-bold text-[32px] mb-6">${word.word ? word.word:"Word Not Found"}</h1>
+            <h1 class="font-bold text-[32px] mb-6">${word.word ? word.word : "Word Not Found"}</h1>
             <p class="font-semibold mb-5">Meaning /Pronounciatio</p>
-            <h2 class="font-bangla text-[30px] mb-5">"${word.meaning?word.meaning:"Meaning Not Found"} / ${word.pronunciation?word.pronunciation:"Pronunciation Not found"}</h2>
+            <h2 class="font-bangla text-[30px] mb-5">"${word.meaning ? word.meaning : "Meaning Not Found"} / ${word.pronunciation ? word.pronunciation : "Pronunciation Not found"}</h2>
             <div class="flex justify-between px-2 ">
-                <button class="btn rounded-full hover:bg-blue-600 "><i class="fa-solid fa-circle-info text-[#374957]"></i></button>
+                <button onclick='loadWordDetail(${word.id})' class="btn rounded-full hover:bg-blue-600 "><i class="fa-solid fa-circle-info text-[#374957]"></i></button>
                 <button class="btn rounded-full hover:bg-blue-600"><i class="fa-solid fa-volume-high text-[#374957] "></i></button>
             </div>
         </div>
