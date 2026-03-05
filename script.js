@@ -89,7 +89,7 @@ const showLesson = (words) => {
             <h2 class="font-bangla text-[30px] mb-5">"${word.meaning ? word.meaning : "Meaning Not Found"} / ${word.pronunciation ? word.pronunciation : "Pronunciation Not found"}</h2>
             <div class="flex justify-between px-2 ">
                 <button onclick='loadWordDetail(${word.id})' class="btn rounded-full hover:bg-blue-600 "><i class="fa-solid fa-circle-info text-[#374957]"></i></button>
-                <button class="btn rounded-full hover:bg-blue-600"><i class="fa-solid fa-volume-high text-[#374957] "></i></button>
+                <button onclick="pronounceWord('${word.word}')" class="btn rounded-full hover:bg-blue-600"><i class="fa-solid fa-volume-high text-[#374957] "></i></button>
             </div>
         </div>
         `
@@ -113,6 +113,7 @@ const getLesson = (lessons) => {
 loadleson()
 
 document.getElementById('search-btn').addEventListener('click', () =>{
+
     const searchIn = document.getElementById('search-input')
     const searchValue = searchIn.value.trim().toLowerCase();
     
@@ -124,3 +125,9 @@ document.getElementById('search-btn').addEventListener('click', () =>{
         showLesson(fillterwords)
     })
 })
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
