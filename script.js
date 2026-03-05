@@ -111,3 +111,16 @@ const getLesson = (lessons) => {
 }
 
 loadleson()
+
+document.getElementById('search-btn').addEventListener('click', () =>{
+    const searchIn = document.getElementById('search-input')
+    const searchValue = searchIn.value.trim().toLowerCase();
+    
+    fetch('https://openapi.programming-hero.com/api/words/all')
+    .then((res) => res.json())
+    .then(data => {
+        const allwords = data.data
+        const fillterwords = allwords.filter((word) => word.word.toLowerCase().includes(searchValue));
+        showLesson(fillterwords)
+    })
+})

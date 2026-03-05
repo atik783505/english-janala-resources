@@ -114,8 +114,20 @@
 
         </div>
     </section>
+
     <section id="loading" class="hidden flex justify-center items-center py-11 my-11">
         <span class="loading loading-spinner text-success loading-xl"></span>
+    </section>
+    <section >
+        <div class="join py-11 flex  justify-center ">
+            <div>
+                <label class="input validator join-item">
+                    <input id="search-input" type="text" placeholder="search word" required />
+                </label>
+                <div class="validator-hint hidden">Enter valid email address</div>
+            </div>
+            <button id="search-btn" class="btn btn-primary join-item">Join</button>
+        </div>
     </section>
     <section id="word-container" class="bg-gray-300 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-center p-4">
         <div class="col-span-full text-center py-10 space-y-5">
@@ -128,9 +140,9 @@
         <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
         <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-              <div class="space-y-6" id="details-box">
-                 
-              </div>
+                <div class="space-y-6" id="details-box">
+
+                </div>
                 <div class="modal-action">
                     <form method="dialog">
                         <!-- if there is a button in form, it will close the modal -->
