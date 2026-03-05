@@ -9,8 +9,19 @@ const createElements = (arr) => {
     return (newHtml.join(" "))
 }
 
+const showLoading = (status) => {
+    if (status == true) {
+        document.getElementById('loading').classList.remove('hidden')
+        document.getElementById('word-container').classList.add('hidden')
+    } else {
+        document.getElementById('word-container').classList.remove('hidden')
+        document.getElementById('loading').classList.add('hidden')
+    }
+}
+
 
 const lessonLoad = (id) => {
+    showLoading(true)
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
         .then((res) => res.json())
@@ -66,6 +77,7 @@ const showLesson = (words) => {
         <h2 class="text-[34px] font-medium leading-10">নেক্সট Lesson এ যান</h2>
     </div>
         `
+        showLoading(false)
         return;
     }
     words.forEach(word => {
@@ -82,6 +94,7 @@ const showLesson = (words) => {
         </div>
         `
         wordContainer.append(newDiv)
+        showLoading(false)
     })
 }
 
